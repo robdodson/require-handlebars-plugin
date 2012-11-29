@@ -364,10 +364,10 @@ define([
                             console.log('hardCodedPath is: ', hardCodedPath);
                             if (fs.existsSync(hardCodedPath)) {
                               console.log('found the hard coded path!!!');
-                              fs.writeFileSync('message.txt', 'Success!!!');
+                              fs.writeFileSync('message.txt', 'Found the file(s)!');
                             } else {
                               console.log('did not find the hard coded path :(');
-                              fs.writeFileSync('message.txt', 'Awww...fuck.');
+                              fs.writeFileSync('message.txt', 'Didn\'t find any files dude.');
                             }
 
                             //fs.existsSync(hardCodedPath, function(exists) {

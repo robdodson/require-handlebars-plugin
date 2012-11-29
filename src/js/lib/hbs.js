@@ -348,6 +348,7 @@ define([
                           });
                         }
                         else if ( config.isBuild ) {
+                          console.log('config is build!!!');
                           (function(){
                             var fs  = require.nodeRequire('fs'),
                                 str = _(metaObj.styles).map(function (style) {
@@ -360,15 +361,25 @@ define([
 
                             // I write out my import statements to a file in order to help me build stuff.
                             // Then I use a tool to inline my import statements afterwards. (you can run r.js on it too)
-							console.log(hardCodedPath);
-                            fs.exists(hardCodedPath, function(exists) {console.log('exists? ' + exists);})
-                            fs.open(hardCodedPath, filecode, '0666', function( e, id ) {
-                                console.log('fs.open called');
-                                console.log(e);
-                              fs.writeSync(id, str, null, encoding='utf8');
-                              fs.close(id);
-                            });
-                            filecode = "a";
+                            console.log('hardCodedPath is: ', hardCodedPath);
+                            if (fs.existsSync(hardCodedPath)) {
+                              console.log('found the hard coded path!!!');
+                              fs.writeFileSync('message.txt', 'Success!!!');
+                            } else {
+                              console.log('did not find the hard coded path :(');
+                              fs.writeFileSync('message.txt', 'Awww...fuck.');
+                            }
+
+                            //fs.existsSync(hardCodedPath, function(exists) {
+                            //  console.log('exists? ' + exists);
+                            //});
+                            //fs.openSync(hardCodedPath, filecode, '0666', function( e, id ) {
+                            //    console.log('fs.open called');
+                            //    console.log(e);
+                            //    fs.writeSync(id, str, null, encoding='utf8');
+                            //    fs.close(id);
+                            //});
+                            //filecode = "a";
                           })();
                         }
                       }
